@@ -1,0 +1,12 @@
+{
+  "name": "chrome-puppeteer-layer",
+  "version": "1.0.0",
+  "description": "Dependencies for the Chrome/Puppeteer Lambda Layer",
+  "main": "app.js",
+  "author": "SAM CLI",
+  "license": "MIT",
+  "dependencies": {
+    "chrome-aws-lambda": "7.0.0",
+    "puppeteer-core": "7.0.x"
+  }
+}

@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  sam-browser
+
+  SAM Template for sam-browser Lambda Application
+
+Resources:
+  ChromePuppeteerLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      Description: Serverless Chrome/Puppeteer Layer
+      ContentUri: layers/puppeteer/
+      CompatibleRuntimes:
+        - nodejs14.x
+    Metadata:
+      BuildMethod: nodejs14.x
+
+  WebsiteFinderFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: Find Web Page DOM Element Function
+      CodeUri: functions/website-finder/
+      Handler: app.lambdaHandler
+      Timeout: 30
+      MemorySize: 2048 # Chrome will require higher memory
+      Runtime: nodejs14.x
+      Layers:
+        - !Ref ChromePuppeteerLayer # Attach Our Chrome Layer
+      Events:
+        CheckSchedule1:
+          Type: Schedule
+          Properties:
+            Description: Check Website Every Minute
+            Enabled: True
+            Schedule: "rate(1 minute)" # choose the frequency
+            Input: '{"url": "https://hackerrdave.com", "querySelector": "#main", "inverse": false}'
