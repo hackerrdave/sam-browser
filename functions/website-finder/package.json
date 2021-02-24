@@ -1,0 +1,10 @@
+{
+  "name": "website-finder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "repository": "",
+  "author": "@hackerrdave",
+  "license": "MIT",
+  "dependencies": {}
+}

@@ -5,5 +5,5 @@ Example Serverless Project using Chrome+Puppeteer in a Lambda Layer.
 
 ```bash
 sam build
-sam local invoke WebsiteFinder --event events/website-finder-event.json
+sam local invoke WebsiteFinderFunction --event events/website-finder-event.json
 ```
