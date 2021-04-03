@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  stepfunctionslocal:
+    image: amazon/aws-stepfunctions-local:latest
+    environment:
+      LAMBDA_ENDPOINT: "http://host.docker.internal:3001"
+      AWS_ACCESS_KEY: "N/A"
+      AWS_SECRET_KEY: "N/A"
+      AWS_DEFAULT_REGION: "us-east-1"
+    ports:
+      - 8083:8083

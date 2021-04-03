@@ -35,9 +35,11 @@ exports.lambdaHandler = async (event, context) => {
         if (foundItem) {
             console.log(`Found Item: ${querySelector}`);
         }
-        
+
         return {
-            "success": foundItem
+            "success": foundItem,
+            "querySelector": querySelector,
+            "url": url
         }
     }
 };

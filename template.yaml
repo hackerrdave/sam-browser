@@ -16,6 +16,16 @@ Resources:
     Metadata:
       BuildMethod: nodejs14.x
 
+  SendMetricsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: Send Metrics for Website Finder Results
+      CodeUri: functions/send-metrics/
+      Handler: app.lambdaHandler
+      Timeout: 5
+      MemorySize: 256
+      Runtime: nodejs14.x
+
   WebsiteFinderFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -27,6 +37,16 @@ Resources:
       Runtime: nodejs14.x
       Layers:
         - !Ref ChromePuppeteerLayer # Attach Our Chrome Layer
+
+  TrackUptimeMachine:
+    Type: AWS::Serverless::StateMachine
+    Properties:
+      DefinitionUri: statemachines/track-uptime.asl.json
+      Policies:
+        - LambdaInvokePolicy:
+            FunctionName: !Ref SendMetricsFunction
+        - LambdaInvokePolicy:
+            FunctionName: !Ref WebsiteFinderFunction
       Events:
         CheckSchedule1:
           Type: Schedule
@@ -34,4 +54,4 @@ Resources:
             Description: Check Website Every Minute
             Enabled: True
             Schedule: "rate(1 minute)" # choose the frequency
-            Input: '{"url": "https://hackerrdave.com", "querySelector": "#main", "inverse": false}'
+            Input: '{"url": "https://hackerrdave.com", "querySelector": "#___gatsby", "inverse": false}'

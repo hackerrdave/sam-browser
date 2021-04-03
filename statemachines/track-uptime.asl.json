@@ -1,0 +1,31 @@
+{
+    "Comment": "Track A Website's Uptime with Chrome & Metrics Reporting",
+    "StartAt": "start",
+    "States": {
+        "start": {
+            "Type": "Pass",
+            "Comment": "Initial Start State for Debugging Input",
+            "Next": "website-finder"
+        },
+        "website-finder": {
+            "Type": "Task",
+            "Comment": "Browse to URL with Chrome and check for element using querySelector",
+            "Resource": "arn:aws:states:::lambda:invoke",
+            "Parameters": {
+                "FunctionName": "WebsiteFinderFunction",
+                "Payload.$": "$"
+            },
+            "Next": "send-metrics"
+        },
+        "send-metrics": {
+            "Type": "Task",
+            "Comment": "Send Metrics to Report on Browsing Results",
+            "Resource": "arn:aws:states:::lambda:invoke",
+            "Parameters": {
+                "FunctionName": "SendMetricsFunction",
+                "Payload.$": "$"
+            },
+            "End": true
+        }
+    }
+}
