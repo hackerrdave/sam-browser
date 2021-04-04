@@ -1,5 +1,6 @@
 # sam-browser
-Example Serverless Project using Chrome+Puppeteer in a Lambda Layer.
+
+Serverless Project using Chrome+Puppeteer in a Lambda Layer, with an example StepFunctions State Machine to simulate an Uptime Tracker.
 
 ## Local Development
 
