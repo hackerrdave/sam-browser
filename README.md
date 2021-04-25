@@ -18,6 +18,14 @@ sam local invoke WebsiteFinderFunction --event events/website-finder-event.json
 
 ### Execute StateMachine
 
+Start Lambdas:
+
+```bash
+sam local start-lambda
+```
+
+In separate process, create and execute statemachine using Step Functions Local:
+
 ```bash
 ./execute-machine-track-uptime.sh
 ```
