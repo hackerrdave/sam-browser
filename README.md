@@ -29,3 +29,7 @@ In separate process, create and execute statemachine using Step Functions Local:
 ```bash
 ./execute-machine-track-uptime.sh
 ```
+
+StateMachine Diagram:
+
+![StateMachine Diagram](/browser-statemachine.png)
